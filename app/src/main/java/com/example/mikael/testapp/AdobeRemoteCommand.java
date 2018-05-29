@@ -25,13 +25,8 @@ public final class AdobeRemoteCommand extends RemoteCommand {
     private String KEY_COMMAND_NAME = "command_name"; //the commandname to invoke
 
 
-    public AdobeRemoteCommand (Application application) {
-        super("adobeAnalytics", "Analytics Remote Command");
-        //v don't know what this is v
-        //Application.ActivityLifecycleCallbacks cb = createActivityLifecycleCallbacks();
-
-        //v don't know what this is v
-        //application.registerActivityLifecycleCallbacks(cb); //don't know what this is
+    public AdobeRemoteCommand () {
+        super("analytics", "Analytics Remote Command");
 
     }
 

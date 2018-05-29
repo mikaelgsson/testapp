@@ -42,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         //mg: tealiumSDK track page when activity loads
         HashMap<String, Object> data = new HashMap<>(1);
-        data.put("event_name", "testApp:view:testEvent");
+        data.put("adobe_command_name", "state");
+        data.put("key_a", "testpage");
+        data.put("key_b", "testcategory");
 
         Tealium.getInstance("INSTANCE").trackView("screenName", data);
     }

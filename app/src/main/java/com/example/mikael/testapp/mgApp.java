@@ -1,7 +1,9 @@
 package com.example.mikael.testapp;
 
 import android.app.Application;
+import android.util.Log;
 
+import com.tealium.internal.tagbridge.RemoteCommand;
 import com.tealium.library.Tealium;
 
 public class mgApp extends Application {
@@ -16,15 +18,27 @@ public class mgApp extends Application {
                 "hm",
                 "sandbox-mg",
                 "dev");
-        // Currently optional - add a 6 character alphanumeric data source ID.
-        // If you have not been given a data source ID, you can omit this. Note that this is a mock value
-        //tealConfig.setDataSourceId("abc123");
-        /* setForceOverrideLogLevel - optional - forces the log level to be set to one of "dev", "qa", "prod" or "silent".
-         * Overrides remote publish setting. Remote publish settings used if omitted. */
-        //tealConfig.setForceOverrideLogLevel("prod");
-        Tealium.createInstance("INSTANCE", tealConfig);
+
+        Tealium inst = Tealium.createInstance("INSTANCE", tealConfig);
+
+
+        RemoteCommand adobe = new AdobeRemoteCommand();
+        inst.addRemoteCommand(adobe);
+
+        inst.addRemoteCommand(new RemoteCommand("test", "troubleshooting") {
+            // onInvoke will be called when Tealium iQ triggers the command
+            @Override
+            protected void onInvoke(Response response) throws Exception {
+                // log
+                Log.d("test: ", "some random output");
+
+            }
+        });
+
+
 
     }
+
 
 
 
